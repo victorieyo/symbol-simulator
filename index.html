@@ -24,14 +24,47 @@
 
 <body>
 
-  <h1>Symbol Simulator</h1>
+<main class="app">
+
+  <h1>Symbol Portal Simulator</h1>
+
   <button id="startBtn">Start</button>
-  <hr>
-  <div id="sequence"></div>
-  <br>
-  <div id="portals"></div>
-  <br>
-  <div id="status"></div>
+  <button id="runnerModeBtn">Runner Mode</button>
+  <button id="scModeBtn">SC Mode</button>
+
+  <section class="practice-layout">
+
+    <section class="chatbox">
+      <h2>Chat</h2>
+      <div id="chatMessages"></div>
+    </section>
+
+    <section class="arena-box">
+      <div id="arena">
+        <div class="platform top"></div>
+        <div class="platform middle-left"></div>
+        <div class="platform middle-right"></div>
+        <div class="platform bottom-left"></div>
+        <div class="platform bottom-middle"></div>
+        <div class="platform bottom-right"></div>
+        <div class="platform floor"></div>
+
+        <div class="portal p1 hidden"></div>
+        <div class="portal p2 hidden"></div>
+        <div class="portal p3 hidden"></div>
+        <div class="portal p4 hidden"></div>
+        <div class="portal p5 hidden"></div>
+        <div class="portal p6 hidden"></div>
+        <div class="portal p7 hidden"></div>
+        <div class="portal p8 hidden"></div>
+      </div>
+    </section>
+
+  </section>
+
+  <p id="status">Waiting to start...</p>
+
+</main>
 
 </body>
 

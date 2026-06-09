@@ -1,247 +1,152 @@
-/*! HTML5 Boilerplate v9.0.1 | MIT License | https://html5boilerplate.com/ */
-
-/* main.css 3.0.0 | MIT License | https://github.com/h5bp/main.css#readme */
-/*
- * What follows is the result of much research on cross-browser styling.
- * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
- * Kroc Camen, and the H5BP dev community and team.
- */
-
-/* ==========================================================================
-   Base styles: opinionated defaults
-   ========================================================================== */
-
-html {
-  color: #222;
-  font-size: 1em;
-  line-height: 1.4;
+* {
+  box-sizing: border-box;
 }
 
-/*
- * Remove text-shadow in selection highlight:
- * https://twitter.com/miketaylr/status/12228805301
- *
- * Customize the background color to match your design.
- */
-
-::-moz-selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
-::selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
-/*
- * A better looking default horizontal rule
- */
-
-hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-  padding: 0;
-}
-
-/*
- * Remove the gap between audio, canvas, iframes,
- * images, videos and the bottom of their containers:
- * https://github.com/h5bp/html5-boilerplate/issues/440
- */
-
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
-  vertical-align: middle;
-}
-
-/*
- * Remove default fieldset styles.
- */
-
-fieldset {
-  border: 0;
+body {
   margin: 0;
-  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: white;
+  overflow: hidden;
 }
 
-/*
- * Allow only vertical resizing of textareas.
- */
+.app {
+  width: 100vw;
+  height: 100vh;
+  padding: 24px 32px;
 
-textarea {
-  resize: vertical;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
+h1 {
+  margin: 0 0 16px;
+}
 
-/* ==========================================================================
-   Helper classes
-   ========================================================================== */
+button {
+  padding: 10px 16px;
+  cursor: pointer;
+}
 
-/*
- * Hide visually and from screen readers
- */
+.practice-layout {
+  flex: 1;
+  width: 100%;
 
-.hidden,
-[hidden] {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 32px;
+}
+
+.chatbox {
+  width: 360px;
+
+  border: 2px solid #555;
+  border-radius: 12px;
+  padding: 16px;
+
+  background: #1a1a1a;
+}
+
+.hidden {
   display: none !important;
 }
 
-/*
- * Hide only visually, but have it available for screen readers:
- * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
- *
- * 1. For long content, line feeds are not interpreted as spaces and small width
- *    causes content to wrap 1 word per line:
- *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
- */
+.arena-box {
+  border: 2px solid #555;
+  border-radius: 12px;
+  background: #1a1a1a;
 
-.visually-hidden {
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
+  position: relative;
+}
+
+#startBtn {
+  margin-bottom: 24px;
+}
+
+#arena {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.platform {
   position: absolute;
-  white-space: nowrap;
-  width: 1px;
-  /* 1 */
+  border-bottom: 4px solid white;
 }
 
-/*
- * Extends the .visually-hidden class to allow the element
- * to be focusable when navigated to via the keyboard:
- * https://www.drupal.org/node/897638
- */
-
-.visually-hidden.focusable:active,
-.visually-hidden.focusable:focus {
-  clip: auto;
-  height: auto;
-  margin: 0;
-  overflow: visible;
-  position: static;
-  white-space: inherit;
-  width: auto;
+.top {
+  width: 185px;
+  left: 50%;
+  top: 35%;
+  transform: translateX(-50%);
 }
 
-/*
- * Hide visually and from screen readers, but maintain layout
- */
-
-.invisible {
-  visibility: hidden;
+.floor {
+  width: 500px;
+  left: 50%;
+  bottom: 10%;
+  transform: translateX(-50%);
 }
 
-/*
- * Clearfix: contain floats
- *
- * The use of `table` rather than `block` is only necessary if using
- * `::before` to contain the top-margins of child elements.
- */
-
-.clearfix::before,
-.clearfix::after {
-  content: "";
-  display: table;
+.bottom-middle {
+  width: 185px;
+  left: 50%;
+  bottom: 25%;
+  transform: translateX(-50%);
 }
 
-.clearfix::after {
-  clear: both;
+.bottom-left {
+  width: 185px;
+  left: 9%;
+  bottom: 25%;
 }
 
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
+.bottom-right {
+  width: 185px;
+  right: 9%;
+  bottom: 25%;
 }
 
-@media print,
-  (-webkit-min-device-pixel-ratio: 1.25),
-  (min-resolution: 1.25dppx),
-  (min-resolution: 120dpi) {
-  /* Style adjustments for high resolution devices */
+.middle-left {
+  width: 150px;
+  left: 26%;
+  bottom: 45%;
 }
 
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid the additional HTTP request:
-   https://www.phpied.com/delay-loading-your-print-css/
-   ========================================================================== */
-
-@media print {
-  *,
-  *::before,
-  *::after {
-    background: #fff !important;
-    color: #000 !important;
-    /* Black prints faster */
-    box-shadow: none !important;
-    text-shadow: none !important;
-  }
-
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
-
-  a[href]::after {
-    content: " (" attr(href) ")";
-  }
-
-  abbr[title]::after {
-    content: " (" attr(title) ")";
-  }
-
-  /*
-   * Don't show links that are fragment identifiers,
-   * or use the `javascript:` pseudo protocol
-   */
-  a[href^="#"]::after,
-  a[href^="javascript:"]::after {
-    content: "";
-  }
-
-  pre {
-    white-space: pre-wrap !important;
-  }
-
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
-  }
-
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
-
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3;
-  }
-
-  h2,
-  h3 {
-    page-break-after: avoid;
-  }
+.middle-right {
+  width: 150px;
+  right: 26%;
+  bottom: 45%;
 }
 
+.portal {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  border: 2px solid #888;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* top */
+.p1 { left: 43%; top: 27%; }
+.p2 { right: 43%; top: 27%; }
+
+/* middle */
+.p3 { left: 31.5%; bottom: 47%; }
+.p4 { right: 31.5%; bottom: 47%; }
+
+/* lower sides */
+.p5 { left: 16%; bottom: 27%; }
+.p6 { right: 16%; bottom: 27%; }
+
+/* lower middle */
+.p7 { left: 31.5%; bottom: 12%; }
+.p8 { right: 31.5%; bottom: 12%; }
