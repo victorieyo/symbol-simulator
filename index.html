@@ -26,21 +26,42 @@
 
 <main class="app">
 
-  <h1>Symbol Portal Simulator</h1>
+  <header class="app-header">
+    <h1>Symbol Portal Simulator</h1>
 
-  <button id="startBtn">Start</button>
-  <button id="runnerModeBtn">Runner Mode</button>
-  <button id="scModeBtn">SC Mode</button>
+    <div class="controls">
+      <button id="startBtn">Start</button>
+
+      <div class="mode-row">
+        <label for="modeSelect">Mode:</label>
+
+        <select id="modeSelect">
+          <option value="runner">Runner</option>
+          <option value="sc">Symbol Catcher</option>
+        </select>
+      </div>
+
+      <p id="timerText">Time: --</p>
+    </div>
+  </header>
 
   <section class="practice-layout">
 
     <section class="chatbox">
       <h2>Chat</h2>
+
       <div id="chatMessages"></div>
+
+      <div class="chat-input-area">
+        <input id="chatInput" type="text" placeholder=". . ." />
+        <button id="chatSubmitBtn">Send</button>
+      </div>
     </section>
 
     <section class="arena-box">
       <div id="arena">
+        <div id="sequence"></div>
+
         <div class="platform top"></div>
         <div class="platform middle-left"></div>
         <div class="platform middle-right"></div>
@@ -62,8 +83,7 @@
 
   </section>
 
-  <div id="status"> </div>
-  <div id="sequence"></div>
+  <div id="status"></div>
 
 </main>
 

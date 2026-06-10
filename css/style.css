@@ -10,6 +10,27 @@ body {
   overflow: hidden;
 }
 
+button,
+#modeSelect {
+  height: 42px;
+  padding: 0 18px;
+  border: 1px solid #777;
+  border-radius: 10px;
+  background: #222;
+  color: white;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover,
+#modeSelect:hover {
+  background: #333;
+}
+
+/* Layout */
+
 .app {
   width: 100vw;
   height: 100vh;
@@ -20,48 +41,112 @@ body {
   align-items: center;
 }
 
+.app-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
 h1 {
   margin: 0 0 16px;
 }
 
-button {
-  padding: 10px 16px;
-  cursor: pointer;
+.controls,
+.mode-row {
+  display: flex;
+  align-items: center;
+}
+
+.controls {
+  justify-content: center;
+  gap: 14px;
+}
+
+.mode-row {
+  gap: 8px;
+}
+
+.mode-row label,
+#timerText {
+  font-weight: bold;
+}
+
+#timerText {
+  margin: 0 0 0 20px;
 }
 
 .practice-layout {
   flex: 1;
   width: 100%;
+  min-height: 0;
 
   display: grid;
   grid-template-columns: 360px 1fr;
   gap: 32px;
 }
 
+/* Chat */
+
 .chatbox {
   width: 360px;
-
-  border: 2px solid #555;
-  border-radius: 12px;
+  height: 100%;
+  min-height: 0;
   padding: 16px;
 
-  background: #1a1a1a;
-}
-
-.hidden {
-  display: none !important;
-}
-
-.arena-box {
   border: 2px solid #555;
   border-radius: 12px;
   background: #1a1a1a;
 
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
-#startBtn {
-  margin-bottom: 24px;
+#chatMessages {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+#chatMessages::-webkit-scrollbar {
+  width: 8px;
+}
+
+#chatMessages::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 999px;
+}
+
+#chatMessages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-input-area {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-shrink: 0;
+}
+
+#chatInput {
+  flex: 1;
+  min-width: 0;
+}
+
+#chatSubmitBtn {
+  width: 70px;
+  flex-shrink: 0;
+}
+
+/* Arena */
+
+.arena-box {
+  position: relative;
+
+  border: 2px solid #555;
+  border-radius: 12px;
+  background: #1a1a1a;
 }
 
 #arena {
@@ -69,6 +154,13 @@ button {
   width: 100%;
   height: 100%;
 }
+
+.hidden,
+#sequence:empty {
+  display: none !important;
+}
+
+/* Platforms */
 
 .platform {
   position: absolute;
@@ -120,10 +212,50 @@ button {
   bottom: 45%;
 }
 
+/* Symbols */
+
+.symbol-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* SC mode symbol */
+
+#sequence {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 220px;
+  height: 220px;
+
+  border: 2px solid #888;
+  border-radius: 50%;
+  background: black;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+#sequence .symbol-img {
+  width: 82%;
+  height: 82%;
+}
+
+/* Runner mode portals */
+
 .portal {
   position: absolute;
-  width: 38px;
-  height: 38px;
+
+  width: 64px;
+  height: 64px;
+
   border: 2px solid #888;
   border-radius: 50%;
 
@@ -131,22 +263,17 @@ button {
   justify-content: center;
   align-items: center;
 
-  font-size: 22px;
-  font-weight: bold;
+  overflow: hidden;
 }
 
-/* top */
-.p1 { left: 43%; top: 27%; }
-.p2 { right: 43%; top: 27%; }
+.p1 { left: 43%; top: 23%; }
+.p2 { right: 43%; top: 23%; }
 
-/* middle */
 .p3 { left: 31.5%; bottom: 47%; }
 .p4 { right: 31.5%; bottom: 47%; }
 
-/* lower sides */
 .p5 { left: 16%; bottom: 27%; }
 .p6 { right: 16%; bottom: 27%; }
 
-  /* lower middle */
 .p7 { left: 31.5%; bottom: 12%; }
 .p8 { right: 31.5%; bottom: 12%; }
