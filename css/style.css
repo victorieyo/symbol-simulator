@@ -251,6 +251,9 @@ h1 {
 /* Runner mode portals */
 
 .portal {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
+
   position: absolute;
 
   width: 64px;
@@ -264,6 +267,12 @@ h1 {
   align-items: center;
 
   overflow: hidden;
+}
+
+.portal:hover {
+  transform: scale(1.15);
+  border-color: #d8f3ff;
+  box-shadow: 0 0 14px #d8f3ff;
 }
 
 .p1 { left: 43%; top: 23%; }
