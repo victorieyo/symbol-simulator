@@ -253,7 +253,7 @@ function submitChatInput() {
 }
 
 function checkSCAnswer(rawInput) {
-  const userParts = rawInput.toLowerCase().split(/\s+/);
+  const userParts = parseUserInput(rawInput);
 
   if (userParts.length !== gameState.currentSequence.length) {
     addChatMessage("Game: Wrong number of symbols. Try again.");
@@ -445,4 +445,22 @@ function showResultSequence(sequence) {
   });
 
   elements.resultSequence.classList.remove("hidden");
+}
+
+function parseUserInput(rawInput) {
+  const cleanedInput = rawInput.toLowerCase().trim();
+
+  const parts = cleanedInput.split(/\s+/);
+
+  if (parts.length === 5) {
+    return parts;
+  }
+
+  const withoutSpaces = cleanedInput.replace(/\s+/g, "");
+
+  if (withoutSpaces.length === 5) {
+    return withoutSpaces.split("");
+  }
+
+  return parts;
 }
