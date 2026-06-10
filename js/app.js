@@ -272,6 +272,7 @@ function checkSCAnswer(rawInput) {
   }
 
   addChatMessage("Game: Correct symbol order!");
+  addChatMessage("Game: Now just pray that those fools hit the right symbols...");
   endRound();
 }
 
