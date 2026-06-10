@@ -44,7 +44,8 @@ const elements = {
   chatSubmitButton: document.getElementById("chatSubmitBtn"),
   chatMessages: document.getElementById("chatMessages"),
   portals: document.querySelectorAll(".portal"),
-  platforms: document.querySelectorAll(".platform")
+  platforms: document.querySelectorAll(".platform"),
+  resultSequence: document.getElementById("resultSequence"),
 };
 
 let gameState = {
@@ -87,6 +88,8 @@ function init() {
 function startGame() {
   if (gameState.roundActive) return;
 
+  elements.resultSequence.innerHTML = "";
+  elements.resultSequence.classList.add("hidden");
   gameState.roundActive = true;
   elements.chatMessages.innerHTML = "";
   lockControls();
@@ -104,7 +107,6 @@ function endRound() {
   gameState.answerChecked = false;
 
   stopTimer();
-  clearPortals();
 
   elements.sequence.innerHTML = "";
   elements.timerText.textContent = "Time: --";
@@ -156,6 +158,7 @@ function handlePortalClick(portal) {
 
   if (gameState.currentRound === SYMBOLS.length) {
     addChatMessage("Game: You hit all 5 symbols!");
+    showResultSequence(gameState.currentSequence);
     endRound();
     return;
   }
@@ -178,6 +181,7 @@ function handleWrongPortalClick() {
   addChatMessage(`Game: You flopped on the ${roundNumber}${suffix} round!`);
   addChatMessage("Game: You have killed your entire party and possibly their will to live. Good job!");
 
+  showResultSequence(gameState.currentSequence);
   endRound();
 }
 
@@ -204,6 +208,8 @@ function showNextSymbol() {
 
   if (gameState.scIndex >= gameState.currentSequence.length) {
     elements.sequence.innerHTML = "";
+    elements.sequence.style.display = "none";
+
     gameState.canSubmitSC = true;
     addChatMessage("Game: Enter the sequence you saw.");
     startTimer(10);
@@ -265,7 +271,7 @@ function checkSCAnswer(rawInput) {
       addChatMessage("Game: You had one job and you failed.");
 
       addChatMessage(`Game: Correct sequence was ${gameState.currentSequence.join(" ")}`);
-
+      showResultSequence(gameState.currentSequence);
       endRound();
       return;
     }
@@ -273,6 +279,7 @@ function checkSCAnswer(rawInput) {
 
   addChatMessage("Game: Correct symbol order!");
   addChatMessage("Game: Now just pray that those fools hit the right symbols...");
+  showResultSequence(gameState.currentSequence);
   endRound();
 }
 
@@ -378,6 +385,7 @@ function handleTimeout() {
     );
   }
 
+  showResultSequence(gameState.currentSequence);
   endRound();
 }
 
@@ -417,4 +425,24 @@ function createSymbolImage(symbol) {
 function setChatInputEnabled(enabled) {
   elements.chatInput.disabled = !enabled;
   elements.chatSubmitButton.disabled = !enabled;
+}
+
+function showResultSequence(sequence) {
+  hidePlatforms();
+  clearPortals();
+
+  elements.sequence.innerHTML = "";
+  elements.sequence.style.display = "none";
+
+  elements.resultSequence.innerHTML = "";
+
+  sequence.forEach((symbol) => {
+    const circle = document.createElement("div");
+    circle.classList.add("result-symbol");
+
+    circle.appendChild(createSymbolImage(symbol));
+    elements.resultSequence.appendChild(circle);
+  });
+
+  elements.resultSequence.classList.remove("hidden");
 }
