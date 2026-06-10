@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+:root {
+  --portal-size: clamp(48px, 3.5vw, 90px);
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -34,23 +38,25 @@ button:hover,
 .app {
   width: 100vw;
   height: 100vh;
-  padding: 24px 32px;
+  padding: 16px 32px;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .app-header {
+  flex-shrink: 0;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 14px;
-  margin-bottom: 20px;
+
+  margin-bottom: 16px;
 }
 
 h1 {
-  margin: 0 0 16px;
+  margin: 0;
 }
 
 .controls,
@@ -74,24 +80,21 @@ h1 {
 }
 
 #timerText {
-  margin: 0 0 0 20px;
+  margin-left: 20px;
 }
 
 .practice-layout {
   flex: 1;
-  width: 100%;
   min-height: 0;
 
   display: grid;
-  grid-template-columns: 360px 1fr;
+  grid-template-columns: clamp(260px, 20vw, 420px) 1fr;
   gap: 32px;
 }
 
 /* Chat */
 
 .chatbox {
-  width: 360px;
-  height: 100%;
   min-height: 0;
   padding: 16px;
 
@@ -142,17 +145,21 @@ h1 {
 /* Arena */
 
 .arena-box {
-  position: relative;
+  min-width: 0;
+  min-height: 0;
 
   border: 2px solid #555;
   border-radius: 12px;
   background: #1a1a1a;
+
+  position: relative;
+  overflow: hidden;
 }
 
 #arena {
-  position: relative;
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 .hidden {
@@ -166,47 +173,56 @@ h1 {
   border-bottom: 4px solid white;
 }
 
+.top,
+.bottom-middle,
+.bottom-left,
+.bottom-right {
+  width: 16%;
+}
+
+.middle-left,
+.middle-right {
+  width: 13%;
+}
+
+.floor {
+  width: 42%;
+}
+
 .top {
-  width: 185px;
   left: 50%;
   top: 35%;
   transform: translateX(-50%);
 }
 
 .floor {
-  width: 500px;
   left: 50%;
   bottom: 10%;
   transform: translateX(-50%);
 }
 
 .bottom-middle {
-  width: 185px;
   left: 50%;
   bottom: 25%;
   transform: translateX(-50%);
 }
 
 .bottom-left {
-  width: 185px;
   left: 9%;
   bottom: 25%;
 }
 
 .bottom-right {
-  width: 185px;
   right: 9%;
   bottom: 25%;
 }
 
 .middle-left {
-  width: 150px;
   left: 26%;
   bottom: 45%;
 }
 
 .middle-right {
-  width: 150px;
   right: 26%;
   bottom: 45%;
 }
@@ -228,8 +244,8 @@ h1 {
   top: 50%;
   transform: translate(-50%, -50%);
 
-  width: 220px;
-  height: 220px;
+  width: clamp(180px, 20vw, 280px);
+  height: clamp(180px, 20vw, 280px);
 
   border: 2px solid #888;
   border-radius: 50%;
@@ -255,8 +271,8 @@ h1 {
 
   position: absolute;
 
-  width: 64px;
-  height: 64px;
+  width: var(--portal-size);
+  height: var(--portal-size);
 
   border: 2px solid #888;
   border-radius: 50%;
@@ -300,8 +316,8 @@ h1 {
 }
 
 .result-symbol {
-  width: 140px;
-  height: 140px;
+  width: clamp(90px, 8vw, 150px);
+  height: clamp(90px, 8vw, 150px);
 
   border: 2px solid #888;
   border-radius: 50%;
